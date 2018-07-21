@@ -10,8 +10,9 @@ log.txt
 *.sublime-project
 *.sublime-workspace
 .vscode/
-npm-debug.log*
-
+npm-debu
+g.log*
+*.config
 .idea/
 .sourcemaps/
 .sass-cache/

@@ -1,0 +1,64 @@
+<ion-header>
+
+  <ion-navbar color="danger">
+    <ion-title>{{ hero.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + hero.thumbnail.path + '.' + hero.thumbnail.extension + ')'">
+  </div>
+
+  <div *ngIf="hero.description" padding>
+    <h2>description</h2>
+    <p>{{hero.description}}</p>
+  </div>
+
+
+  <ion-segment color="danger" [(ngModel)]="content">
+    <ion-segment-button value="series">
+      Series
+    </ion-segment-button>
+    <ion-segment-button value="stories">
+      Stories
+    </ion-segment-button>
+    <ion-segment-button value="comics">
+      Comics
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="content === 'series'">
+    <ion-list *ngIf="hero.series?.items.length">
+      <ion-list-header>
+        Series
+      </ion-list-header>
+      <ion-item *ngFor="let serie of hero.series.items">
+        {{serie.name}}
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="content === 'comics'">
+    <ion-list *ngIf="hero.comics?.items.length">
+      <ion-list-header>
+        Comics
+      </ion-list-header>
+      <ion-item *ngFor="let comic of hero.comics.items">
+        {{comic.name}}
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="content === 'stories'">
+    <ion-list *ngIf="hero.stories?.items.length">
+      <ion-list-header>
+        Stories
+      </ion-list-header>
+      <ion-item *ngFor="let story of hero.stories.items">
+        {{story.name}}
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+</ion-content>

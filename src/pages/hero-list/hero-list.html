@@ -2,6 +2,7 @@
 
   <ion-navbar color="danger">
     <ion-title>Marvel Heros</ion-title>
+    
   </ion-navbar>
   <ion-toolbar color="danger">
     <ion-searchbar placeholder="Search" (ionInput)="filterItems($event)"></ion-searchbar>
@@ -11,8 +12,8 @@
 
 <ion-content>
 
-  <ion-list>
-    <ion-item (click)="goToDetail(hero)" *ngFor="let hero of heros">
+  <ion-list [virtualScroll]="heros">
+    <ion-item (click)="goToDetail(hero)" *virtualItem="let hero">
       <ion-thumbnail item-left>
         <img [src]="hero.thumbnail.path +'.'+ hero.thumbnail.extension">
       </ion-thumbnail>

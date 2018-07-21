@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HeroProvider } from '../../providers/hero/hero';
-import { text } from '@angular/core/src/render3/instructions';
+import { Camera, DestinationType } from '@ionic-native/camera';
+
 
 @IonicPage()
 @Component({
@@ -11,12 +12,14 @@ import { text } from '@angular/core/src/render3/instructions';
 export class HeroListPage {
 
   heros
+  avatar: string;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private heroProvider: HeroProvider,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public camera: Camera
   ) {
   }
 
@@ -49,6 +52,21 @@ export class HeroListPage {
         return hero.name.toLowerCase().includes(val.toLowerCase());
       });
     }
+  }
+
+  takePicture($event) {
+    this.camera.getPicture({
+      allowEdit: true,
+      cameraDirection: 1,
+      correctOrientation: true,
+      destinationType: DestinationType.DATA_URL,
+      targetHeight: 90,
+      targetWidth: 90
+    })
+    .then(data => {
+      this.avatar = 'data:image/jpg;base64,' + data;
+    })
+
   }
 
 }

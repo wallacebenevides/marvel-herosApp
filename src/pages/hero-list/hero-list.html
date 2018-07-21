@@ -2,7 +2,13 @@
 
   <ion-navbar color="danger">
     <ion-title>Marvel Heros</ion-title>
-    
+    <ion-buttons end>
+      <button (click)="takePicture($event)" ion-button icon-only>
+        <ion-avatar item-end>
+          <img [src]="avatar? avatar: 'assets/imgs/dummy-avatar.jpg'">
+        </ion-avatar>
+      </button>
+    </ion-buttons>
   </ion-navbar>
   <ion-toolbar color="danger">
     <ion-searchbar placeholder="Search" (ionInput)="filterItems($event)"></ion-searchbar>

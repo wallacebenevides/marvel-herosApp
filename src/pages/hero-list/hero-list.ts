@@ -37,4 +37,18 @@ export class HeroListPage {
     this.navCtrl.push("HeroDetailPage", { hero })
   }
 
+  filterItems(ev: any) {
+
+    console.log(ev)
+    this.ionViewDidLoad();
+
+    let val = ev.target.value;
+
+    if (val && val.trim() !== '') {
+      this.heros = this.heros.filter(function (hero) {
+        return hero.name.toLowerCase().includes(val.toLowerCase());
+      });
+    }
+  }
+
 }
